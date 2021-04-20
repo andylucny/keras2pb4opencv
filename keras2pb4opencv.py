@@ -59,5 +59,8 @@ print()
 print('now you can use it in OpenCV4, python or C++:')
 print('import cv2')
 print('net = cv2.dnn.readNet("frozen_graph.pbtxt","frozen_graph.pb")')
-print('net.setInput(inputs) # if keras input is (None, 224, 224, 3) use (1, 3, 224, 244) here')
+shape = [ model.input.shape[0], model.input.shape[3], model.input.shape[1], model.input.shape[2]]
+strshape = '('+str(shape[0])+','+str(shape[1])+','+str(shape[2])+','+str(shape[3])+')'
+
+print('net.setInput(inputs) # inputs shape is '+strshape)
 print('outputs = net.forward()')
