@@ -59,8 +59,13 @@ print()
 print('now you can use it in OpenCV4, python or C++:')
 print('import cv2')
 print('net = cv2.dnn.readNet("frozen_graph.pbtxt","frozen_graph.pb")')
-shape = [ model.input.shape[0], model.input.shape[3], model.input.shape[1], model.input.shape[2]]
-strshape = '('+str(shape[0])+','+str(shape[1])+','+str(shape[2])+','+str(shape[3])+')'
+
+shape = [ dim for dim in model.input.shape]
+strshape = '('
+for i in range(len(shape)):
+    strshape += ',' if i>0 else ''
+    strshape += str(shape[0])
+strshape += ')'
 
 print('net.setInput(inputs) # inputs shape is '+strshape)
 print('outputs = net.forward()')
